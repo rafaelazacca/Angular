@@ -11,6 +11,3 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'blogPessoal';
 }
-/*export class AppComponent {
-  faCoffee = 'faCoffee'
-}*/

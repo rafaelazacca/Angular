@@ -1,21 +1,23 @@
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { EntrarComponent } from './entrar/entrar.component';
 import { NgModule } from '@angular/core';
-/*import { CommonModule, Routes } from '@angular/common';
-import { CommonModule, Routes } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
+/* import { CommonModule, Routes } from '@angular/common'; */
 
-const routs: Routes = [
+const routes: Routes = [
 
-  {path: 'inicio', component: EntrarComponent},
+  {path: ' ', redirectTo: 'entrar', pathMatch: 'full'},
+
+  {path: 'entrar', component:  EntrarComponent},
   {path: 'cadastrar', component: CadastrarComponent}
-]
-
-}
+];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    AppRoutingRoutingModule
-  ]
+
+   declarations:[],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+
 })
-export class AppRoutingModule { }*/
+export class AppRoutingModule {}
