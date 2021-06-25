@@ -1,0 +1,10 @@
+#img-bg{
+
+  background-image: url('https://img.freepik.com/fotos-gratis/maos-segurando-e-anotar-em-um-caderno-em-branco-com-o-computador-portatil-na-mesa_9563-4722.jpg?size=626&ext=jpg');
+
+  min-height: 100vh;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
