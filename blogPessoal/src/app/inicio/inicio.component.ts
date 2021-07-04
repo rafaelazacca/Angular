@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import { TemaService } from '../service/tema.service';
 
 @Component({
   selector: 'app-inicio',
@@ -10,14 +11,18 @@ import { environment } from 'src/environments/environment.prod';
 export class InicioComponent implements OnInit {
 
   constructor(
-    private router: Router
-
+    private router: Router,
+    private temaService: TemaService
   ) { }
 
   ngOnInit( ) {
     if(environment.token == ''){
       this.router.navigate(['/entrar'])
     }
+
+     /* this.temaService.refreshToken() */
+
   }
+
 
 }
