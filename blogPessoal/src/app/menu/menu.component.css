@@ -1,0 +1,15 @@
+.fs-16
+{
+font-size: 16pt;
+}
+
+a{
+  cursor: pointer;
+}
+.pl-3{
+  padding-left: 20px;
+}
+
+.ml-auto{
+  margin-left: auto;
+}

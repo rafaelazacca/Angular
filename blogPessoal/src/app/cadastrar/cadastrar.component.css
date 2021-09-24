@@ -1,0 +1,10 @@
+#img-bg{
+
+  background-image: url('http://portal.utfpr.edu.br/noticias/geral/servidores/enap-abre-nove-cursos-presenciais-para-servidores-da-utfpr/foto-com-foco-em-maos-em-notebook.jpg/@@images/b60b0e7a-bbae-496f-9078-a960c0f3a095.jpeg');
+
+  min-height: 100vh;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
