@@ -5,7 +5,7 @@
 
       <div class="row d-flex justify-content-center">
         <div class="col-md-6">
-          <h1 class="fs-54">Seja bem vindo!</h1>
+          <h1 class="fs-54">Seja bem vindo(a)!</h1>
           <h5 class="fs-18">Expresse aqui os seus pensamentos.</h5>
         </div>
       </div>
@@ -32,19 +32,59 @@
 
   <ul class="nav nav-pills nav-fill">
     <li class="nav-item">
-      <a class="nav-link active text-light font-weight-bold" aria-current="page" href="#todasPostagens">Todas as Postagens</a>
-    </li>
+      <a class="nav-link active text-light font-weight-bold mt-4 " aria-current="page" href="#todasPostagens">Todas as postagens</a>
+
+       <div class="card-columns mt-5">
+        <div class="card text-center" *ngFor='let item of listaPostagens'>
+          <div class="card-body">
+            <h5 class="card-title m-0">{{item.titulo}}</h5>
+            <small class="test-muted"> Tema: {{item.tema.descricao}}</small>
+            <p class="card-text mt-3">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
+             </small></p>
+            <p class="card-text"><small class="text-muted"> by: {{item.usuario.nome}}</small></p>
+          </div>
+        </div>
+       </div>
+
+      </li>
+
+
     <li class="nav-item" id="minhasPostagens">
-      <a class="nav-link font-weight-bold" href="#minhasPostagens">Minhas Postagens</a>
+      <a (click)='findByIdUser()' class="nav-link active text-light font-weight-bold mt-4 " aria-current="page" href="#minhasPostagens">Minhas Postagens</a>
+
+      <div class="card-columns mt-5">
+        <div class="card text-center" *ngFor='let item of user.postagem'>
+          <div class="card-body">
+            <h5 class="card-title m-0">{{item.titulo}}</h5>
+            <small class="test-muted"> Tema: {{item.tema.descricao}}</small>
+            <p class="card-text mt-3">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
+             </small></p>
+
+          </div>
+        </div>
+       </div>
+
     </li>
     <li class="nav-item font-weight-bold" id="postagemTema">
-      <a class="nav-link" href="#postagemTema">Postagens por Tema</a>
-    </li>
-    <li class="nav-item font-weight-bold">
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <a class="nav-link active text-light font-weight-bold mt-4 " aria-current="page" href="#postagemTema">Postagens por Tema</a>
+
+      <div class="card-columns mt-5" *ngFor='let tema of listaTemas'>
+        <div class="card text-center" *ngFor='let item of tema.postagem'>
+          <div class="card-body">
+            <h5 class="card-title m-0">{{item.titulo}}</h5>
+            <p class="card-text mt-3">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
+             </small></p>
+             <p class="card-text"><small class="text-muted"> by: {{item.usuario.nome}}</small></p>
+
+          </div>
+        </div>
+       </div>
+
     </li>
   </ul>
-
 </div>
 
 
@@ -65,19 +105,23 @@
       </div>
       <div class="modal-body">
         <form>
+
           <div class="form-group">
             <label for="titulo" class="col-form-label">Título:</label>
-            <input type="text" class="form-control" id="titulo">
+            <input [(ngModel)]= "postagem.titulo" name="titulo" type="text" class="form-control" id="titulo">
           </div>
+
           <div class="form-group">
             <label for="texto" class="col-form-label">Texto:</label>
-            <textarea class="form-control" id="texto" rows="3"></textarea>
+            <textarea [(ngModel)]="postagem.texto" name="texto" class="form-control" id="texto" rows="3"></textarea>
           </div>
 
           <div class="form-group">
             <label for="texto"class="col-form-label">Escolha um tema ou <a data-dismiss="modal" routerLink='/tema'> cadastre um novo</a>: </label>
-            <select name="tema" id="tema" class="form-control">
-              <option value="">Temas</option>
+            <select name="tema" id="tema" class="form-control" [(ngModel)]='idTema' (change) = 'findByIdTema()'>
+              <option *ngFor='let item of listaTemas' value="{{item.id}}">
+               {{item.descricao}}
+              </option>
             </select>
 
           </div>
@@ -85,7 +129,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Publicar</button>
+        <button type="button" class="btn btn-primary" (click)='publicar()'
+        data-dismiss="modal">Publicar</button>
       </div>
     </div>
   </div>
